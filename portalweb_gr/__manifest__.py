@@ -1,5 +1,5 @@
 {
-    'name': 'Portal GR',
+    'name': 'Portalweb GR',
     'version': '1.0',
     'summary': 'Portal para gestión de facturas XML contra órdenes de compra',
     'description': 'Permite a proveedores subir XMLs y validarlos contra OC',
