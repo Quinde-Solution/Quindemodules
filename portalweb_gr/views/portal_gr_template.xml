@@ -1,0 +1,78 @@
+<odoo>
+    <template id="portal_gr_page">
+        <t t-call="portal.portal_layout">
+            <t t-set="title">Portal GR</t>
+            <div class="container">
+
+                <t t-if="error_msg">
+                    <div class="alert alert-danger" role="alert">
+                        <t t-esc="error_msg"/>
+                    </div>
+                </t>
+                <t t-if="success_msg">
+                    <div class="alert alert-success" role="alert">
+                        <t t-esc="success_msg"/>
+                    </div>
+                </t>
+
+                <h2>Órdenes de Compra Abiertas</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Orden</th>
+                            <!--<th>Proveedor</th>-->
+                            <th>Total</th>
+                            <!-- <th>Codigo GR</th> -->
+                            <th>XMLs Cargados</th>
+                            <th>Total Xmls</th>
+                            <th>Subir XML</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="orders" t-as="po">
+                            <tr>
+                                <td>
+                                    <a t-att-href="'/my/purchase/%d' % po.id">
+                                        <t t-esc="po.name"/>
+                                    </a>
+                                </td>
+                                <!--<td><t t-esc="po.partner_id.name"/></td>-->
+                                <td><t t-esc="po.amount_total"/></td>
+                                <!-- <td><t t-esc="po.code_gr"/></td> -->
+                                <td>
+                                    <ul>
+                                        <t t-foreach="po.xml_ids" t-as="xml">
+                                            <li>
+                                                <t t-esc="xml.name"/> |
+                                                Total: <t t-esc="xml.total"/> |
+                                                <strong><t t-esc="'✔️' if xml.validate else '❌'"/></strong>
+                                                <a t-att-href="'/my/gr/delete_xml/%s' % xml.id"
+                                                   class="btn btn-danger btn-sm ml-2"
+                                                   onclick="return confirm('¿Estás seguro de eliminar este archivo XML?')">Eliminar</a>
+                                            </li>
+                                        </t>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <t t-set="suma_total" t-value="0"/>
+                                    <t t-foreach="po.xml_ids" t-as="xml">
+                                        <t t-set="suma_total" t-value="suma_total + (xml.total or 0)"/>
+                                    </t>
+                                    <t t-esc="suma_total"/>
+                                </td>
+                                <td>
+                                    <form t-attf-action="/my/gr/upload" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="order_id" t-att-value="po.id"/>
+                                        <input type="file" name="xml_file" accept=".xml" required="required"/>
+                                        <button type="submit" class="btn btn-primary btn-sm mt-1">Subir XML</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

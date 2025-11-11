@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_gr_xml_upload_tree" model="ir.ui.view">
+        <field name="name">gr.xml.upload.tree</field>
+        <field name="model">gr.xml.upload</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="total"/>
+                <field name="validate"/>
+            </list>
+        </field>
+    </record>
+</odoo>
