@@ -6,7 +6,7 @@
         Download Received CFDIs From The SAT
     """,
 
-    'author': "Ariel Reyes, Ricardo Aucapiña",
+    'author': "Quinde-Solution",
     'website': "",
     'license': 'LGPL-3',
 
