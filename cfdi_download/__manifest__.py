@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Download CFDI",
+    'name': "Download CFDI-SAT",
     'summary': """Download Received CFDIs From The SAT""",
     'description': """
         Download Received CFDIs From The SAT
