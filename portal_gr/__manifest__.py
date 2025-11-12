@@ -4,7 +4,7 @@
     'summary': 'Portal para gestión de facturas XML contra órdenes de compra',
     'description': 'Permite a proveedores subir XMLs y validarlos contra OC',
     'category': 'Portal',
-    'author': 'Ricardo Aucapiña',
+    'author': 'Quinde-Solution',
     'license': 'LGPL-3',
     'depends': ['purchase', 'portal', 'account'],
     'data': [
